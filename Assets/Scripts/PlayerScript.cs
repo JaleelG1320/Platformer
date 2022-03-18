@@ -38,7 +38,7 @@ public class PlayerScript : MonoBehaviour
         {
             Destroy(collision.collider.gameObject);
             scoreValue +=1;
-            score.text = scoreValue.ToString();
+            score.text = "Score: "+ scoreValue.ToString();
         }
     }
 
@@ -47,7 +47,7 @@ public class PlayerScript : MonoBehaviour
         if(collision.collider.tag == "Ground")
         {
             if(Input.GetKey(KeyCode.W)){
-                rd2d.AddForce(new Vector2(0,2), ForceMode2D.Impulse);
+                rd2d.AddForce(new Vector2(0,3), ForceMode2D.Impulse);
             }
         }
     }
