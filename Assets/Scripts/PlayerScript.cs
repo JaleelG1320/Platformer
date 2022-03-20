@@ -15,10 +15,12 @@ public class PlayerScript : MonoBehaviour
    public GameObject loseTextObject;
     private int scoreValue = 0;
     private int healthValue = 3;
-    public AudioSource musicSource;
+
     public AudioClip musicClipOne;
     public AudioClip musicClipTwo;
     public AudioClip musicClipThree;
+    public AudioSource musicSource;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -27,8 +29,10 @@ public class PlayerScript : MonoBehaviour
         health.text = "Health: " + healthValue.ToString();
         winTextObject.SetActive(false);
         loseTextObject.SetActive(false);
-        musicSource.clip = MusicClipOne;
-        MusicSource.Play();
+        musicSource.clip = musicClipOne;
+        musicSource.Play();
+        musicSource.loop = true;
+        
     }
 
     // Update is called once per frame
@@ -55,11 +59,8 @@ public class PlayerScript : MonoBehaviour
             if (scoreValue >= 8)
         {
             winTextObject.SetActive(true);
-            musicSource.Stop();
             musicSource.clip = musicClipTwo;
             musicSource.Play();
-            Destroy(gameObject);
-
         }
         if (scoreValue == 4)
         {
@@ -76,10 +77,10 @@ public class PlayerScript : MonoBehaviour
             if (healthValue == 0)
             {
                 loseTextObject.SetActive(true);
-                musicSource.Stop();
-                musicSource.clip = musicClipThree;
+                 musicSource.clip = musicClipThree;
                 musicSource.Play();
                 Destroy(gameObject);
+
             }
         }
 
