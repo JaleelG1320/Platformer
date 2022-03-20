@@ -38,9 +38,7 @@ public class PlayerScript : MonoBehaviour
             Application.Quit();
         }
     }
-void SetHealhtText(){
-    health.text = "Health: " + healthValue.ToString();
-}
+
     private void OnCollisionEnter2D(Collision2D collision) 
     {
         if(collision.collider.tag == "Coin")
@@ -48,9 +46,16 @@ void SetHealhtText(){
             Destroy(collision.collider.gameObject);
             scoreValue +=1;
             score.text = "Score: "+ scoreValue.ToString();
-            if (scoreValue >= 4)
+            if (scoreValue >= 8)
         {
             winTextObject.SetActive(true);
+            Destroy(gameObject);
+
+        }
+        if (scoreValue == 4)
+        {
+            transform.position = new Vector3(50.0f, 0.0f, 0.0f);
+            healthValue = 3;
         }
         }
         else if (collision.collider.tag == "Enemy")
@@ -64,6 +69,7 @@ void SetHealhtText(){
                 Destroy(gameObject);
             }
         }
+
     }
 
     private void OnCollisionStay2D(Collision2D collision) 
@@ -73,7 +79,7 @@ void SetHealhtText(){
             if(Input.GetKey(KeyCode.W)){
                 rd2d.AddForce(new Vector2(0,3), ForceMode2D.Impulse);
             }
-            if (scoreValue >= 4)
+            if (scoreValue >= 8)
         {
             winTextObject.SetActive(true);
             Destroy(gameObject);
