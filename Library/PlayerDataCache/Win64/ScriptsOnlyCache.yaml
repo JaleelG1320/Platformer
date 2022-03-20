@@ -645,4 +645,4 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: /Applications/Unity/Platformer/platformer/Platformer.exe
+  playerPath: /Applications/Unity/Platformer/platformer/Gaillard_Jaleel_DIG3480_Challenge2/Platformer.exe
