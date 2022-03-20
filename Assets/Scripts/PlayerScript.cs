@@ -15,6 +15,10 @@ public class PlayerScript : MonoBehaviour
    public GameObject loseTextObject;
     private int scoreValue = 0;
     private int healthValue = 3;
+    public AudioSource musicSource;
+    public AudioClip musicClipOne;
+    public AudioClip musicClipTwo;
+    public AudioClip musicClipThree;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +27,8 @@ public class PlayerScript : MonoBehaviour
         health.text = "Health: " + healthValue.ToString();
         winTextObject.SetActive(false);
         loseTextObject.SetActive(false);
+        musicSource.clip = MusicClipOne;
+        MusicSource.Play();
     }
 
     // Update is called once per frame
@@ -49,6 +55,9 @@ public class PlayerScript : MonoBehaviour
             if (scoreValue >= 8)
         {
             winTextObject.SetActive(true);
+            musicSource.Stop();
+            musicSource.clip = musicClipTwo;
+            musicSource.Play();
             Destroy(gameObject);
 
         }
@@ -56,6 +65,7 @@ public class PlayerScript : MonoBehaviour
         {
             transform.position = new Vector3(50.0f, 0.0f, 0.0f);
             healthValue = 3;
+            health.text = "Health: "+ healthValue.ToString();
         }
         }
         else if (collision.collider.tag == "Enemy")
@@ -66,6 +76,9 @@ public class PlayerScript : MonoBehaviour
             if (healthValue == 0)
             {
                 loseTextObject.SetActive(true);
+                musicSource.Stop();
+                musicSource.clip = musicClipThree;
+                musicSource.Play();
                 Destroy(gameObject);
             }
         }
@@ -79,11 +92,7 @@ public class PlayerScript : MonoBehaviour
             if(Input.GetKey(KeyCode.W)){
                 rd2d.AddForce(new Vector2(0,3), ForceMode2D.Impulse);
             }
-            if (scoreValue >= 8)
-        {
-            winTextObject.SetActive(true);
-            Destroy(gameObject);
-        }
+
         }
     }
 }
